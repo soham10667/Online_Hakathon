@@ -50,25 +50,55 @@ To maintain a tight, high-impact scope for a hackathon or college MVP, we priori
 
 ```
 ├── backend/
-│   ├── app/
-│   │   ├── api/             # JWT auth, LiveKit token generator, meetings, and AI endpoints
-│   │   ├── core/            # Database configurations, password hashings, and security
-│   │   ├── models/          # PostgreSQL SQLAlchemy schemas (User, Meeting, Transcript, Summary, etc.)
-│   │   ├── schemas/         # Pydantic request/response body validators
-│   │   ├── services/        # Qdrant, S3, Redis, LiveKit, and Integrations services
-│   │   ├── ai_workflow/     # LangGraph multi-agent state definitions and nodes
-│   │   ├── websockets/      # Socket.IO live stream listeners and real-time emitters
-│   │   └── main.py          # FastAPI application bootstrapper
-│   ├── main.py              # Root backend delegation script
-│   ├── requirements.txt     # Backend python dependencies
-│   ├── Dockerfile           # Backend containerization configuration
-│   └── docker-compose.yml   # Multi-service setup (Postgres, Redis, Qdrant, Backend)
+│   ├── prisma/              # Prisma DB Schemas & Migrations
+│   ├── src/                 # Active NestJS Backend
+│   │   ├── main.ts          # NestJS Server entry point
+│   │   ├── app.module.ts    # Main NestJS Application Module
+│   │   ├── ai/              # Gemini/LLM analysis services
+│   │   ├── auth/            # JWT authentication controller & guards
+│   │   ├── email/           # Email invites & notifications (Nodemailer)
+│   │   ├── integrations/    # External app connectors
+│   │   ├── livekit/         # LiveKit audio/video session management
+│   │   ├── meetings/        # Meeting controllers, Socket.IO gateway, services
+│   │   ├── recordings/      # Meeting recording database service
+│   │   └── teams/           # Workspace, Channels & DM group logic
+│   ├── app/                 # FastAPI Backend (Python service)
+│   │   ├── main.py          # FastAPI application bootstrapper
+│   │   ├── api/             # JWT auth & endpoints
+│   │   └── ai_workflow/     # LangGraph multi-agent systems
+│   ├── tsconfig.json        # TypeScript configuration
+│   ├── package.json         # Node.js dependencies & dev scripts
+│   └── docker-compose.yml   # Dev DB, Redis, and Qdrant setup
 └── frontend/
-    ├── src/
-    │   ├── pages/           # Login, Dashboard, live Meeting Room, and Tasks board
-    │   ├── App.tsx          # Router layout and sidebar navigation
-    │   ├── index.css        # Premium style tokens and CSS definitions
-    │   └── main.tsx         # Frontend entry point
+    ├── src/                 # React Frontend
+    │   ├── main.tsx         # Frontend entry point
+    │   ├── App.tsx          # App routing, layout & sidebar navigation
+    │   ├── index.css        # Theme styles & global layout definitions
+    │   ├── config.ts        # Frontend URL variables
+    │   ├── hooks/           # Custom React hooks (e.g. useSpeechRecognition)
+    │   └── pages/           # Application views
+    │       ├── Login.tsx            # Login Page
+    │       ├── Dashboard.tsx        # Meeting workspace list & creation dashboard
+    │       ├── CreateMeeting.tsx    # Live/Scheduled meeting room wizard
+    │       ├── JoinMeeting.tsx      # Landing page code joining form
+    │       ├── MeetingView.tsx      # Real-time WebRTC room, transcription, & notes
+    │       ├── WaitingRoom.tsx      # Lobby prior to entering video meetings
+    │       ├── RecordingsPage.tsx   # Saved recordings player
+    │       ├── CalendarView.tsx     # Team scheduled session scheduler calendar
+    │       ├── Tasks.tsx            # Board tracking tasks extracted by AI
+    │       ├── ChannelView.tsx      # Thread-based team channel workspace
+    │       ├── DirectMessageView.tsx# Chat messaging dialogs
+    │       ├── Integrations.tsx     # Connected external platforms configuration
+    │       ├── EmailInviteModal.tsx # Dialog to send out invite URLs
+    │       └── LandingPage.tsx      # Introductory product showcase website
+    ├── package.json         # React packages & scripts
+    └── vite.config.ts       # Vite compilation settings
+├── ai_copilot/              # AI Speech & Voice Agent Helper (Python)
+│   ├── main.py              # Main voice agent loop
+│   ├── agent.py             # Agent LLM reasoning & prompt logic
+│   ├── stt_engine.py        # Speech-to-Text (STT) transcription handler
+│   ├── tts_engine.py        # Text-to-Speech (TTS) audio generator
+│   └── requirements.txt     # Python requirements for the voice agent
 ```
 
 ---
