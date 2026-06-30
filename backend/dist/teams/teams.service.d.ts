@@ -6,68 +6,68 @@ export declare class TeamsService {
     constructor(prisma: PrismaService, aiService: AiService);
     getTeams(userId: string): Promise<({
         members: {
+            id: string;
             email: string;
             name: string;
-            id: string;
         }[];
         channels: {
-            name: string;
             id: string;
+            name: string;
             createdAt: Date;
             description: string | null;
             teamId: string;
         }[];
     } & {
-        name: string;
         id: string;
+        name: string;
         createdAt: Date;
     })[]>;
     createTeam(userId: string, name: string): Promise<{
         members: {
+            id: string;
             email: string;
             name: string;
-            id: string;
         }[];
         channels: {
-            name: string;
             id: string;
+            name: string;
             createdAt: Date;
             description: string | null;
             teamId: string;
         }[];
     } & {
-        name: string;
         id: string;
+        name: string;
         createdAt: Date;
     }>;
     joinTeam(userId: string, teamId: string): Promise<{
         members: {
+            id: string;
             email: string;
             name: string;
-            id: string;
         }[];
         channels: {
-            name: string;
             id: string;
+            name: string;
             createdAt: Date;
             description: string | null;
             teamId: string;
         }[];
     } & {
-        name: string;
         id: string;
+        name: string;
         createdAt: Date;
     }>;
     createChannel(teamId: string, name: string, description?: string): Promise<{
-        name: string;
         id: string;
+        name: string;
         createdAt: Date;
         description: string | null;
         teamId: string;
     }>;
     getChannels(teamId: string): Promise<{
-        name: string;
         id: string;
+        name: string;
         createdAt: Date;
         description: string | null;
         teamId: string;
@@ -81,20 +81,20 @@ export declare class TeamsService {
         senderId: string;
     }[]>;
     getAllUsers(userId: string): Promise<{
+        id: string;
         email: string;
         name: string;
-        id: string;
     }[]>;
     getDirectMessages(myId: string, userId: string): Promise<({
         sender: {
+            id: string;
             email: string;
             name: string;
-            id: string;
         };
         receiver: {
+            id: string;
             email: string;
             name: string;
-            id: string;
         };
     } & {
         id: string;
